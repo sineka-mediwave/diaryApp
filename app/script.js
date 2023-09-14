@@ -4,6 +4,7 @@ const cardBody = document.querySelector("#diary-card");
 let myDiary = [];
 
 // Main function
+
 updateForm();
 getFromLocalSorage();
 
@@ -19,20 +20,14 @@ function updateFormElements() {
   // fetch form data
   const date = document.querySelector("#validDate").value;
   const notes = document.querySelector("#notes").value;
-
+  reverseDate(date);
   const myDiary = {
     id: new Date().getTime(),
     date: date,
     notes: notes,
   };
 
-  if (!notes) {
-    notes.innerText = "Add your thoughts";
-    console.log(notes);
-  } else {
-    // addNotes(thoughts);
-    addNotes(myDiary);
-  }
+  addNotes(myDiary);
 }
 
 //function to add data in storage
@@ -41,6 +36,14 @@ function addNotes(diary) {
   setToLocalStorage();
 }
 
+function sorting() {
+  const arr = myDiary.map((obj) => {
+    return { ...obj, date: new Date(obj.date) };
+  });
+  const sort = arr.sort((a, b) => b.date - a.date);
+  console.log(sort);
+  return sort;
+}
 // function to save data in local storage
 function setToLocalStorage() {
   const str = JSON.stringify(myDiary);
@@ -64,6 +67,7 @@ function updateUi() {
   for (let i = 0; i < myDiary.length; i++) {
     const diaryCard = displayCard(myDiary[i]);
     cardBody.appendChild(diaryCard);
+    sorting();
   }
 }
 
@@ -104,7 +108,6 @@ function remove(diaryId) {
 
 //function to reverse the date
 function reverseDate(date) {
-  d = date.split("-").reverse().join("-");
-  console.log(d);
+  let d = date.split("-").reverse().join("-");
   return d;
 }
