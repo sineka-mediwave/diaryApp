@@ -17,12 +17,18 @@
       <div class="form-element">
         <label for="notes">Notes :</label>
         <div>
-          <textarea name="notes" id="notes" rows="10" cols="30" required>
-          </textarea>
+          <textarea
+            name="notes"
+            id="notes"
+            rows="10"
+            cols="30"
+            required
+          ></textarea>
+          <span id="error"></span>
         </div>
       </div>
       <input type="submit" id="submitBtn" value="Add Note" />
     </form>
-    <div class="diary-card"></div>
+    <div id="diary-card"></div>
   </body>
 </html>
