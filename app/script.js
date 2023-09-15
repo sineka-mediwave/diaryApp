@@ -26,7 +26,6 @@ function updateFormElements() {
     date: date,
     notes: notes,
   };
-
   addNotes(myDiary);
 }
 
@@ -37,10 +36,14 @@ function addNotes(diary) {
 }
 
 function sorting() {
-  const arr = myDiary.map((obj) => {
-    return { ...obj, date: new Date(obj.date) };
+  // const arr = myDiary.map((obj) => {
+  //   return { ...obj, date: new Date(obj.date) };
+  // });
+
+  const sort = myDiary.sort((a, b) => {
+    console.log(a, b);
+    return new Date(b.date) - new Date(a.date);
   });
-  const sort = arr.sort((a, b) => b.date - a.date);
   console.log(sort);
   return sort;
 }
@@ -64,10 +67,10 @@ function getFromLocalSorage() {
 
 function updateUi() {
   clearApp();
+  sorting();
   for (let i = 0; i < myDiary.length; i++) {
     const diaryCard = displayCard(myDiary[i]);
     cardBody.appendChild(diaryCard);
-    sorting();
   }
 }
 
@@ -104,6 +107,7 @@ function remove(diaryId) {
   const filterArrray = myDiary.filter((diary) => diary.id != diaryId);
   myDiary = filterArrray;
   setToLocalStorage();
+  updateUi();
 }
 
 //function to reverse the date

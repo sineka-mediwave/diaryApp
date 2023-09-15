@@ -63,7 +63,19 @@ button{
 #diary-card {
     margin-top: 20px;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto auto;
+}
+
+@media (max-width:1100px) {
+    #diary-card {
+        grid-template-columns: auto auto;
+    } 
+}
+
+@media (max-width:480px) {
+    #diary-card {
+        grid-template-columns: auto ;
+    } 
 }
 
 .card-notes {
