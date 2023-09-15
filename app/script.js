@@ -13,6 +13,7 @@ function updateForm() {
   form.addEventListener("submit", function (r) {
     r.preventDefault();
     updateFormElements();
+    form.reset();
   });
 }
 
